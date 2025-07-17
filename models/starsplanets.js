@@ -1,24 +1,22 @@
 'use strict';
 const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class StarsPlanets extends Model {
     static associate(models) {
-      // No associations needed for join table
+      // This join table does not need explicit associations
     }
   }
+
   StarsPlanets.init({
-    starId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    planetId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    }
+    starId: DataTypes.INTEGER,
+    planetId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'StarsPlanets',
-    tableName: 'StarsPlanets'
+    tableName: 'StarsPlanets',
+    timestamps: false
   });
+
   return StarsPlanets;
 };

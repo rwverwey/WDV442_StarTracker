@@ -4,7 +4,6 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Planet extends Model {
     static associate(models) {
-      // A planet belongs to many stars through the StarsPlanets join table
       Planet.belongsToMany(models.Star, {
         through: 'StarsPlanets',
         foreignKey: 'planetId',
@@ -15,15 +14,15 @@ module.exports = (sequelize, DataTypes) => {
   }
 
   Planet.init({
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    size: DataTypes.INTEGER,
+    name: DataTypes.STRING,
+    type: DataTypes.STRING,
+    orbitalPeriod: DataTypes.FLOAT,
+    size: DataTypes.STRING,
     description: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'Planet',
+    tableName: 'Planets',
   });
 
   return Planet;

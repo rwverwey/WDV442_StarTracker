@@ -4,31 +4,32 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Star extends Model {
     static associate(models) {
-      // Each star belongs to one galaxy
       Star.belongsTo(models.Galaxy, {
         foreignKey: 'galaxyId',
         as: 'galaxy',
         onDelete: 'CASCADE',
       });
 
-      // Each star belongs to many planets through StarsPlanets
       Star.belongsToMany(models.Planet, {
         through: 'StarsPlanets',
         foreignKey: 'starId',
         otherKey: 'planetId',
-        as: 'planets'
+        as: 'planets',
       });
     }
   }
 
   Star.init({
     name: DataTypes.STRING,
-    size: DataTypes.INTEGER,
+    type: DataTypes.STRING,
+    size: DataTypes.STRING,
     description: DataTypes.TEXT,
+    luminosity: DataTypes.FLOAT,
     galaxyId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Star',
+    tableName: 'Stars',
   });
 
   return Star;
