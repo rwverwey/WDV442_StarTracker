@@ -109,3 +109,40 @@ curl -X PUT http://localhost:8080/planets/1 \
 ```bash
 curl -X DELETE http://localhost:8080/planets/1
 ```
+
+
+# Star-Planet Relationships
+
+## Create a Star-Planet Link
+
+```bash
+curl -X POST http://localhost:8080/starsplanets \
+    -H "Content-Type: application/json" \
+    -d '{"starId":2,"planetId":4}'
+```
+
+## Get All Star-Planet Links
+
+```bash
+curl -X GET http://localhost:8080/starsplanets
+```
+
+## Get One Star-Planet Link
+
+```bash
+curl -X GET http://localhost:8080/starsplanets/10
+```
+
+## Update a Star-Planet Link
+
+```bash
+curl -X PUT http://localhost:8080/starsplanets/9 \
+    -H "Content-Type: application/json" \
+    -d '{"starId":11,"planetId":1}'
+```
+
+## Delete a Star-Planet Link
+
+```bash
+curl -X DELETE http://localhost:8080/starsplanets/23
+```

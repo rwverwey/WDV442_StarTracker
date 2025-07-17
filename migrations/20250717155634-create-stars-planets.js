@@ -39,7 +39,6 @@ module.exports = {
       }
     });
 
-    // Add unique constraint for starId + planetId
     await queryInterface.addConstraint('StarsPlanets', {
       fields: ['starId', 'planetId'],
       type: 'unique',

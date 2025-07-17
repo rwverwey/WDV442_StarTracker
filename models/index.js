@@ -9,8 +9,8 @@ const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
 
-console.log(`🌍 Environment: ${env}`);
-console.log('📁 Loading database config:', config);
+console.log(`Environment: ${env}`);
+console.log('Loading database config:', config);
 
 // Force logging to console
 config.logging = console.log;
@@ -37,14 +37,14 @@ fs
     const modelPath = path.join(__dirname, file);
     const model = require(modelPath)(sequelize, Sequelize.DataTypes);
     db[model.name] = model;
-    console.log(`✅ Loaded model: ${model.name}`);
+    console.log(`Loaded model: ${model.name}`);
   });
 
 // Register associations if any
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
-    console.log(`🔗 Associated model: ${modelName}`);
+    console.log(`Associated model: ${modelName}`);
   }
 });
 
