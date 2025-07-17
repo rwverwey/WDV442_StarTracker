@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8
+    container_name: wdv442-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: asl
+      MYSQL_DATABASE: wdv442_space_tracker
+      MYSQL_USER: asl
+      MYSQL_PASSWORD: asl
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./var:/var/lib/mysql
+
+  node:
+    image: node:18
+    container_name: wdv442-node
+    working_dir: /usr/src/app
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - '8080:8080'
+    stdin_open: true
+    tty: true
+    command: sh -c "npm install && node index.js"
+    depends_on:
+      - mysql
