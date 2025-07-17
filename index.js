@@ -13,11 +13,13 @@ app.get('/', (req, res) => res.send('Star Tracker API is running'));
 const galaxyRoutes = require('./routes/galaxyRoutes');
 const starRoutes = require('./routes/starRoutes');
 const planetRoutes = require('./routes/planetRoutes');
+const starsPlanetsRoutes = require('./routes/starsPlanetsRoutes'); 
 
 // Mount routes
 app.use('/galaxies', galaxyRoutes);
 app.use('/stars', starRoutes);
 app.use('/planets', planetRoutes);
+app.use('/starsplanets', starsPlanetsRoutes); 
 
 // Start server
 app.listen(port, () => console.log(`Server running on port ${port}`));

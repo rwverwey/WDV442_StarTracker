@@ -9,14 +9,21 @@ module.exports = (sequelize, DataTypes) => {
   }
 
   StarsPlanets.init({
-    starId: DataTypes.INTEGER,
-    planetId: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'StarsPlanets',
-    tableName: 'StarsPlanets',
-    timestamps: false
-  });
+  starId: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  },
+  planetId: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  }
+}, {
+  sequelize,
+  modelName: 'StarsPlanets',
+  tableName: 'StarsPlanets',
+  timestamps: true   
+});
+
 
   return StarsPlanets;
 };
