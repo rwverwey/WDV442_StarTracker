@@ -1,0 +1,32 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.env
+
+# Sequelize
+config/config.json
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+*.pid
+docker-compose.override.yml
+
+# VSCode
+.vscode/
+
+# Build/output
+dist/
+coverage/
+
+# Others
+.env.local
+.env.*.local
