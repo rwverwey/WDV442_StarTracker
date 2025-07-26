@@ -25,7 +25,8 @@ module.exports = (sequelize, DataTypes) => {
     size: DataTypes.STRING,
     description: DataTypes.TEXT,
     luminosity: DataTypes.FLOAT,
-    galaxyId: DataTypes.INTEGER
+    galaxyId: DataTypes.INTEGER,
+    image: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Star',

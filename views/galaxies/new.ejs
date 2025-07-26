@@ -1,0 +1,12 @@
+<%- include('../partials/header', { title: 'Create Galaxy' }) %>
+
+<h2>New Galaxy</h2>
+<form action="/galaxies-ui" method="POST" enctype="multipart/form-data">
+  <label>Name: <input type="text" name="name" required></label><br>
+  <label>Type: <input type="text" name="type"></label><br>
+  <label>Distance (ly): <input type="number" name="distance"></label><br>
+  <label>Image: <input type="file" name="image"></label><br>
+  <button type="submit">Create</button>
+</form>
+
+<%- include('../partials/footer') %>

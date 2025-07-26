@@ -1,0 +1,21 @@
+<%- include('../partials/header', { title: 'New Planet' }) %>
+
+<h2>Create Planet</h2>
+<form action="/planets-ui" method="POST" enctype="multipart/form-data">
+  <label>Name: <input type="text" name="name" required></label><br>
+  <label>Type: <input type="text" name="type"></label><br>
+  <label>Climate: <input type="text" name="climate"></label><br>
+  <label>Atmosphere: <input type="text" name="atmosphere"></label><br>
+  <label>Population: <input type="number" name="population"></label><br>
+  <label>Star:
+    <select name="starId" required>
+      <% stars.forEach(s => { %>
+        <option value="<%= s.id %>"><%= s.name %></option>
+      <% }) %>
+    </select>
+  </label><br>
+  <label>Image: <input type="file" name="image"></label><br>
+  <button type="submit">Create</button>
+</form>
+
+<%- include('../partials/footer') %>

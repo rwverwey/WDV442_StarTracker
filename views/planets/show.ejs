@@ -1,0 +1,15 @@
+<%- include('../partials/header', { title: planet.name }) %>
+
+<section class="detail-view">
+  <h2><%= planet.name %></h2>
+  <% if (planet.image) { %>
+    <img src="/uploads/<%= planet.image %>" alt="<%= planet.name %>" class="detail-image">
+  <% } %>
+  <p><strong>Type:</strong> <%= planet.type || 'N/A' %></p>
+  <p><strong>Size:</strong> <%= planet.size || 'N/A' %></p>
+  <p><strong>Orbital Period:</strong> <%= planet.orbitalPeriod || 'N/A' %> days</p>
+  <p><strong>Description:</strong> <%= planet.description || 'N/A' %></p>
+  <a class="btn" href="/planets-ui/<%= planet.id %>/edit">Edit</a>
+</section>
+
+<%- include('../partials/footer') %>

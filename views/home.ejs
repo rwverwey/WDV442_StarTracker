@@ -1,0 +1,28 @@
+<%- include('partials/header', { title: 'Star Tracker Home' }) %>
+
+<section class="home-hero">
+  <h2>Welcome to Star Tracker</h2>
+  <p>Manage your galaxy database with ease.</p>
+</section>
+
+<section class="home-grid">
+  <div class="home-card">
+    <h3>Galaxies</h3>
+    <p>Create, update, and explore galaxies across the universe.</p>
+    <a class="btn" href="/galaxies-ui">Manage Galaxies</a>
+  </div>
+
+  <div class="home-card">
+    <h3>Stars</h3>
+    <p>Browse stars, assign them to galaxies, and track stellar attributes.</p>
+    <a class="btn" href="/stars-ui">Manage Stars</a>
+  </div>
+
+  <div class="home-card">
+    <h3>Planets</h3>
+    <p>View and manage planets orbiting your tracked stars.</p>
+    <a class="btn" href="/planets-ui">Manage Planets</a>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

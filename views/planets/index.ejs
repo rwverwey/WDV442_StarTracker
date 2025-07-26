@@ -1,0 +1,30 @@
+<%- include('../partials/header', { title: 'Planets' }) %>
+
+<section class="home-hero">
+  <h2>Planets Catalog</h2>
+  <a class="btn" href="/planets-ui/new">+ Add New Planet</a>
+</section>
+
+<section class="home-grid">
+  <% planets.forEach(p => { %>
+    <div class="home-card">
+      <% if (p.image) { %>
+        <img src="/uploads/<%= p.image %>" alt="<%= p.name %>" class="card-thumb">
+      <% } %>
+      <h3><a href="/planets-ui/<%= p.id %>"><%= p.name %></a></h3>
+      <p><strong>Type:</strong> <%= p.type || 'N/A' %></p>
+      <p><strong>Size:</strong> <%= p.size || 'N/A' %></p>
+      <% if (p.stars && p.stars.length) { %>
+        <p><strong>Orbits:</strong> <%= p.stars.map(s => s.name).join(', ') %></p>
+      <% } %>
+      <div>
+        <a class="btn" href="/planets-ui/<%= p.id %>/edit">Edit</a>
+        <form action="/planets-ui/<%= p.id %>?_method=DELETE" method="POST" style="display:inline;">
+          <button class="btn" type="submit" onclick="return confirm('Delete this planet?')">Delete</button>
+        </form>
+      </div>
+    </div>
+  <% }) %>
+</section>
+
+<%- include('../partials/footer') %>

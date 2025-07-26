@@ -1,0 +1,27 @@
+<%- include('../partials/header', { title: 'Galaxies' }) %>
+
+<section class="home-hero">
+  <h2>Galaxies Catalog</h2>
+  <a class="btn" href="/galaxies-ui/new">+ Add New Galaxy</a>
+</section>
+
+<section class="home-grid">
+  <% galaxies.forEach(g => { %>
+    <div class="home-card">
+      <% if (g.image) { %>
+        <img src="/uploads/<%= g.image %>" alt="<%= g.name %>" class="card-thumb">
+      <% } %>
+      <h3><a href="/galaxies-ui/<%= g.id %>"><%= g.name %></a></h3>
+      <p><strong>Type:</strong> <%= g.type || 'N/A' %></p>
+      <p><strong>Distance:</strong> <%= g.distance ? g.distance + ' light years' : 'N/A' %></p>
+      <div>
+        <a class="btn" href="/galaxies-ui/<%= g.id %>/edit">Edit</a>
+        <form action="/galaxies-ui/<%= g.id %>?_method=DELETE" method="POST" style="display:inline;">
+          <button class="btn" type="submit" onclick="return confirm('Delete this galaxy?')">Delete</button>
+        </form>
+      </div>
+    </div>
+  <% }) %>
+</section>
+
+<%- include('../partials/footer') %>

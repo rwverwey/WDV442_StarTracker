@@ -1,0 +1,23 @@
+<%- include('../partials/header', { title: 'Edit Star' }) %>
+
+<h2>Edit Star</h2>
+<form action="/stars-ui/<%= star.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+  <label>Name: <input type="text" name="name" value="<%= star.name %>" required></label><br>
+  <label>Type: <input type="text" name="type" value="<%= star.type %>"></label><br>
+  <label>Size: <input type="text" name="size" value="<%= star.size %>"></label><br>
+  <label>Luminosity: <input type="number" step="any" name="luminosity" value="<%= star.luminosity %>"></label><br>
+  <label>Galaxy:
+    <select name="galaxyId">
+      <% galaxies.forEach(g => { %>
+        <option value="<%= g.id %>" <%= g.id === star.galaxyId ? 'selected' : '' %>><%= g.name %></option>
+      <% }) %>
+    </select>
+  </label><br>
+  <% if (star.image) { %>
+    <p>Current Image: <img src="/uploads/<%= star.image %>" width="100"></p>
+  <% } %>
+  <label>New Image: <input type="file" name="image"></label><br>
+  <button type="submit">Update</button>
+</form>
+
+<%- include('../partials/footer') %>

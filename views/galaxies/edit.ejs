@@ -1,0 +1,15 @@
+<%- include('../partials/header', { title: 'Edit Galaxy' }) %>
+
+<h2>Edit Galaxy</h2>
+<form action="/galaxies-ui/<%= galaxy.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+  <label>Name: <input type="text" name="name" value="<%= galaxy.name %>" required></label><br>
+  <label>Type: <input type="text" name="type" value="<%= galaxy.type %>"></label><br>
+  <label>Distance: <input type="number" name="distance" value="<%= galaxy.distance %>"></label><br>
+  <% if (galaxy.image) { %>
+    <p>Current Image: <img src="/uploads/<%= galaxy.image %>" width="100"></p>
+  <% } %>
+  <label>New Image: <input type="file" name="image"></label><br>
+  <button type="submit">Update</button>
+</form>
+
+<%- include('../partials/footer') %>

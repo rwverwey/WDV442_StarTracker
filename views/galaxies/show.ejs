@@ -1,0 +1,13 @@
+<%- include('../partials/header', { title: galaxy.name }) %>
+
+<section class="detail-view">
+  <h2><%= galaxy.name %></h2>
+  <% if (galaxy.image) { %>
+    <img src="/uploads/<%= galaxy.image %>" alt="<%= galaxy.name %>" class="detail-image">
+  <% } %>
+  <p><strong>Type:</strong> <%= galaxy.type || 'N/A' %></p>
+  <p><strong>Distance:</strong> <%= galaxy.distance || 'N/A' %> light-years</p>
+  <a class="btn" href="/galaxies-ui/<%= galaxy.id %>/edit">Edit</a>
+</section>
+
+<%- include('../partials/footer') %>

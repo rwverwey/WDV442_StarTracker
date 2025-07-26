@@ -18,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
     type: DataTypes.STRING,
     orbitalPeriod: DataTypes.FLOAT,
     size: DataTypes.STRING,
-    description: DataTypes.TEXT
+    description: DataTypes.TEXT,
+    image: DataTypes.STRING 
   }, {
     sequelize,
     modelName: 'Planet',

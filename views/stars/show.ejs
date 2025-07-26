@@ -1,0 +1,18 @@
+<%- include('../partials/header', { title: star.name }) %>
+
+<section class="detail-view">
+  <h2><%= star.name %></h2>
+  <% if (star.image) { %>
+    <img src="/uploads/<%= star.image %>" alt="<%= star.name %>" class="detail-image">
+  <% } %>
+  <p><strong>Type:</strong> <%= star.type || 'N/A' %></p>
+  <p><strong>Size:</strong> <%= star.size || 'N/A' %></p>
+  <p><strong>Luminosity:</strong> <%= star.luminosity || 'N/A' %></p>
+  <% if (star.galaxy) { %>
+    <p><strong>Galaxy:</strong> <%= star.galaxy.name %></p>
+  <% } %>
+  <p><strong>Description:</strong> <%= star.description || 'N/A' %></p>
+  <a class="btn" href="/stars-ui/<%= star.id %>/edit">Edit</a>
+</section>
+
+<%- include('../partials/footer') %>
