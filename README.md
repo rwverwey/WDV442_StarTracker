@@ -1,147 +1,156 @@
-# Galaxy
+# Star Tracker
 
-## Create a Galaxy (Working)
+A full-stack Node.js, Express, and Sequelize application for cataloging and managing galaxies, stars, and planets. Star Tracker provides full CRUD functionality via both a RESTful API and a modern HTML5 UI. The application supports image uploads, robust database relationships, and is fully containerized using Docker for streamlined development and deployment.
 
-```bash
-curl -X POST http://localhost:8080/galaxies \
-    -H "Content-Type: application/json" \
-    -d '{"name":"Milky Way","type":"Spiral","distance":0,"image":"milky_way.jpg"}'
+---
+
+## Table of Contents
+
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Setup Instructions](#setup-instructions)
+- [Directory Structure](#directory-structure)
+- [API Endpoints](#api-endpoints)
+    - [Galaxies](#galaxies)
+    - [Stars](#stars)
+    - [Planets](#planets)
+    - [StarsPlanets (Many-to-Many)](#starsplanets-many-to-many)
+- [Frontend UI](#frontend-ui)
+- [Image Uploads](#image-uploads)
+- [Project Notes](#project-notes)
+
+---
+
+## Features
+
+- REST API endpoints for Galaxies, Stars, Planets, and Star-Planet relationships
+- HTML5 UI for managing all entities with modern styling
+- File upload support for entity images (JPG, PNG)
+- Full CRUD support from both API and frontend interface
+- Sequelize ORM with MySQL backend
+- Dockerized development environment for easy setup
+- Image storage with live previews across all views
+
+---
+
+## Technologies Used
+
+- Node.js / Express.js
+- Sequelize ORM (v6)
+- MySQL
+- EJS (for UI templating)
+- Multer (for file uploads)
+- Docker + Docker Compose
+- HTML5 + CSS3
+
+---
+
+## Setup Instructions
+
+1. **Clone the Repository**
+     ```bash
+     git clone https://github.com/yourusername/star-tracker.git
+     cd star-tracker
+     ```
+
+2. **Start Dockerized Environment**
+     ```bash
+     docker compose up --build
+     ```
+     The app will be available at: [http://localhost:8080](http://localhost:8080)
+
+3. **Apply Database Migrations (in Node container)**
+     ```bash
+     docker exec -it wdv442-node npx sequelize-cli db:migrate
+     ```
+
+---
+
+## Directory Structure
+
 ```
-
-## Get All Galaxies (Working)
-
-```bash
-curl -X GET http://localhost:8080/galaxies
-```
-
-## Get One Galaxy
-
-```bash
-curl -X GET http://localhost:8080/galaxies/1
-```
-
-## Update a Galaxy (Working)
-
-```bash
-curl -X PUT http://localhost:8080/galaxies/1 \
-    -H "Content-Type: application/json" \
-    -d '{"type":"Barred Spiral"}'
-```
-
-## Delete a Galaxy (Working)
-
-```bash
-curl -X DELETE http://localhost:8080/galaxies/1
+.
+├── controllers/         # UI and API logic
+├── models/              # Sequelize models
+├── migrations/          # Database schema migrations
+├── routes/              # Express route definitions
+├── public/uploads/      # Uploaded images
+├── views/               # EJS UI templates
+├── config/              # Sequelize and DB config
+├── docker-compose.yml   # Docker multi-container setup
+├── index.js             # Express server entry point
 ```
 
 ---
 
-# Star
+## API Endpoints
 
-## Create a Star (linked to Galaxy ID) (Working)
+### Galaxies
 
-```bash
-curl -X POST http://localhost:8080/stars \
-    -H "Content-Type: application/json" \
-    -d '{"name":"Sun","size":100,"description":"Main sequence star","galaxyId":1}'
-```
+| Action   | Method | Route           |
+|----------|--------|----------------|
+| Create   | POST   | /galaxies      |
+| Read All | GET    | /galaxies      |
+| Read One | GET    | /galaxies/:id  |
+| Update   | PUT    | /galaxies/:id  |
+| Delete   | DELETE | /galaxies/:id  |
 
-## Get All Stars (Working)
+### Stars
 
-```bash
-curl -X GET http://localhost:8080/stars
-```
+| Action   | Method | Route        |
+|----------|--------|-------------|
+| Create   | POST   | /stars      |
+| Read All | GET    | /stars      |
+| Read One | GET    | /stars/:id  |
+| Update   | PUT    | /stars/:id  |
+| Delete   | DELETE | /stars/:id  |
 
-## Get One Star (Working)
+### Planets
 
-```bash
-curl -X GET http://localhost:8080/stars/1
-```
+| Action   | Method | Route         |
+|----------|--------|--------------|
+| Create   | POST   | /planets     |
+| Read All | GET    | /planets     |
+| Read One | GET    | /planets/:id |
+| Update   | PUT    | /planets/:id |
+| Delete   | DELETE | /planets/:id |
 
-## Update a Star (Working)
+### StarsPlanets (Many-to-Many)
 
-```bash
-curl -X PUT http://localhost:8080/stars/1 \
-    -H "Content-Type: application/json" \
-    -d '{"size":101}'
-```
-
-## Delete a Star (Working)
-
-```bash
-curl -X DELETE http://localhost:8080/stars/1
-```
+| Action      | Method | Route               |
+|-------------|--------|--------------------|
+| Create Link | POST   | /starsplanets      |
+| Read All    | GET    | /starsplanets      |
+| Read One    | GET    | /starsplanets/:id  |
+| Update Link | PUT    | /starsplanets/:id  |
+| Delete Link | DELETE | /starsplanets/:id  |
 
 ---
 
-# Planet
+## Frontend UI
 
-## Create a Planet (linked to Star ID) (Working)
+- `/galaxies-ui` – View, create, update, and delete galaxies
+- `/stars-ui` – View, create, update, and delete stars
+- `/planets-ui` – View, create, update, and delete planets
 
-```bash
-curl -X POST http://localhost:8080/planets \
-    -H "Content-Type: application/json" \
-    -d '{"name":"Earth","size":50,"description":"Habitable planet","starId":1}'
-```
+Each UI route supports:
+- Image display and preview
+- Live linking of relationships (e.g., Star to Galaxy, Planet to Star)
+- Uniform, modern layout with reusable styles
 
-## Get All Planets (Working)
+---
 
-```bash
-curl -X GET http://localhost:8080/planets
-```
+## Image Uploads
 
-## Get One Planet (Working)
+- Uploads are stored in `public/uploads/`
+- Each Galaxy, Star, and Planet can have one image
+- Images display in all list and detail views
+- Uploads handled using Multer middleware
 
-```bash
-curl -X GET http://localhost:8080/planets/1
-```
+---
 
-## Update a Planet (Working)
+## Project Notes
 
-```bash
-curl -X PUT http://localhost:8080/planets/1 \
-    -H "Content-Type: application/json" \
-    -d '{"size":51}'
-```
-
-## Delete a Planet (Working)
-
-```bash
-curl -X DELETE http://localhost:8080/planets/1
-```
-
-
-# Star-Planet Relationships
-
-## Create a Star-Planet Link (Working)
-
-```bash
-curl -X POST http://localhost:8080/starsplanets \
-    -H "Content-Type: application/json" \
-    -d '{"starId":2,"planetId":4}'
-```
-
-## Get All Star-Planet Links (Working)
-
-```bash
-curl -X GET http://localhost:8080/starsplanets
-```
-
-## Get One Star-Planet Link (Working)
-```bash
-curl -X GET http://localhost:8080/starsplanets/10
-```
-
-## Update a Star-Planet Link (Working)
-
-```bash
-curl -X PUT http://localhost:8080/starsplanets/9 \
-    -H "Content-Type: application/json" \
-    -d '{"starId":11,"planetId":1}'
-```
-
-## Delete a Star-Planet Link (Working)
-
-```bash
-curl -X DELETE http://localhost:8080/starsplanets/23
-```
+- The application is designed for extensibility and can be adapted to other astronomical or cataloging use cases.
+- All code is modular and follows best practices for maintainability.
+- Contributions and suggestions are welcome via pull requests or issues on the repository.
