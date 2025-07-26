@@ -4,9 +4,7 @@
 <form action="/planets-ui/<%= planet.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
   <label>Name: <input type="text" name="name" value="<%= planet.name %>" required></label><br>
   <label>Type: <input type="text" name="type" value="<%= planet.type %>"></label><br>
-  <label>Climate: <input type="text" name="climate" value="<%= planet.climate %>"></label><br>
-  <label>Atmosphere: <input type="text" name="atmosphere" value="<%= planet.atmosphere %>"></label><br>
-  <label>Population: <input type="number" name="population" value="<%= planet.population %>"></label><br>
+
   <label>Star:
     <select name="starId" required>
       <% stars.forEach(s => { %>
